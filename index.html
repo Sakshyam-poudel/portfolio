@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | CSAI Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Font: Space Mono (techy, unique) -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-outline"></div>
+
+  <!-- ═══ NAV ═══ -->
+  <nav id="navbar">
+    <div class="nav-logo">YN<span class="accent">.</span></div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger">☰</button>
+  </nav>
+
+  <!-- ═══ SECTION 1: HOME / HERO ═══ -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Your Name</h1>
+      <!-- Typing animation targets this span -->
+      <h2 class="hero-tagline">
+        I build <span id="typed-text"></span><span class="cursor-blink">|</span>
+      </h2>
+      <p class="hero-desc">
+        CSAI student passionate about AI, Machine Learning & Data Science.
+        Building intelligent systems that solve real problems.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <!-- Animated background grid -->
+    <div class="hero-bg-grid"></div>
+  </section>
+
+  <!-- ═══ SECTION 2: ABOUT ═══ -->
+  <section id="about" class="section">
+    <h2 class="section-title">About <span class="accent">Me</span></h2>
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="assets/images/profile.jpg" alt="Your Name" class="about-img" />
+        <div class="about-img-glow"></div>
+      </div>
+      <div class="about-text">
+        <h3>CSAI Bachelor Student</h3>
+        <p>
+          I'm a Computer Science & AI student with a strong foundation in
+          machine learning, data science, and software development.
+          I love building projects that sit at the intersection of
+          intelligent systems and real-world problems.
+        </p>
+        <p>
+          Currently exploring deep learning, NLP, and data pipelines.
+          When I'm not coding, I'm reading research papers or breaking
+          things in Jupyter notebooks.
+        </p>
+        <div class="about-stats">
+          <div class="stat"><span class="stat-num">10+</span><span>Projects</span></div>
+          <div class="stat"><span class="stat-num">3+</span><span>Years Coding</span></div>
+          <div class="stat"><span class="stat-num">5+</span><span>Technologies</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: SKILLS ═══ -->
+  <section id="skills" class="section section-alt">
+    <h2 class="section-title">My <span class="accent">Skills</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-card" data-aos>
+        <div class="skill-icon">🤖</div>
+        <h3>AI & Machine Learning</h3>
+        <p>Supervised learning, neural networks, model training & evaluation</p>
+        <div class="skill-tags">
+          <span>scikit-learn</span><span>TensorFlow</span><span>PyTorch</span>
+        </div>
+      </div>
+
+      <div class="skill-card" data-aos>
+        <div class="skill-icon">📊</div>
+        <h3>Data Science</h3>
+        <p>Data wrangling, visualization, statistical analysis</p>
+        <div class="skill-tags">
+          <span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
+        </div>
+      </div>
+
+      <div class="skill-card" data-aos>
+        <div class="skill-icon">💻</div>
+        <h3>Programming</h3>
+        <p>Writing clean, efficient code for various applications</p>
+        <div class="skill-tags">
+          <span>Python</span><span>JavaScript</span><span>SQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card" data-aos>
+        <div class="skill-icon">🛠️</div>
+        <h3>Tools & Platforms</h3>
+        <p>Development workflow and deployment tools</p>
+        <div class="skill-tags">
+          <span>Git</span><span>Jupyter</span><span>VS Code</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: PROJECTS ═══ -->
+  <section id="projects" class="section">
+    <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+    <div class="projects-grid">
+
+      <div class="project-card" data-aos>
+        <div class="project-img-wrap">
+          <img src="assets/images/project1.jpg" alt="Project 1" />
+          <div class="project-overlay">
+            <a href="#" class="btn btn-sm">Live Demo</a>
+            <a href="#" class="btn btn-sm btn-outline">GitHub</a>
+          </div>
+        </div>
+        <div class="project-info">
+          <div class="project-tags"><span>Python</span><span>ML</span></div>
+          <h3>Your Project Name</h3>
+          <p>Brief description of what this project does and what problem it solves.</p>
+        </div>
+      </div>
+
+      <!-- Add more project cards here -->
+
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: CONTACT ═══ -->
+  <section id="contact" class="section section-alt">
+    <h2 class="section-title">Get In <span class="accent">Touch</span></h2>
+    <div class="contact-wrap">
+      <p class="contact-sub">
+        Interested in collaborating or have a question? I'd love to hear from you.
+      </p>
+      <form class="contact-form" id="contactForm">
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required />
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required />
+        </div>
+        <div class="form-group">
+          <textarea rows="5" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <p>Designed & built by <span class="accent">Your Name</span> · 2025</p>
+    <div class="social-links">
+      <a href="#">GitHub</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Twitter</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
