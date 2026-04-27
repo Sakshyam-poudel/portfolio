@@ -273,9 +273,9 @@ statNums.forEach(n => countObserver.observe(n));
 // ═══════════════════════════════════════════
 
 // ✏️ PASTE YOUR GEMINI API KEY HERE
-const GEMINI_API_KEY = 'AIzaSyALsFGUHwI2Vcn7A7knr2cJIdlboUW_Jqs';
+const GEMINI_API_KEY = 'AIzaSyBuZHeJ2k4j-mh9ZaA45vabqffoMC-guIo';
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
 // ✏️ CUSTOMIZE THIS with your real info
 const SYSTEM_PROMPT = `You are a helpful assistant on Sakshyam Poudel's portfolio website.
@@ -350,7 +350,7 @@ async function sendMessage() {
   // Show typing
   showTyping();
 
-  try {
+ try {
     const response = await fetch(GEMINI_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -368,17 +368,24 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    // Extract reply from Gemini response
-    const botReply = data.candidates[0].content.parts[0].text;
+    // Show exact error in console so we can debug
+    console.log('Gemini response:', data);
 
-    // Add to history
-    chatHistory.push({
-      role: 'model',
-      parts: [{ text: botReply }]
-    });
-
-    removeTyping();
-    addMessage(botReply, 'bot');
+    // Check if response is valid before reading it
+    if (data.candidates && data.candidates[0]) {
+      const botReply = data.candidates[0].content.parts[0].text;
+      chatHistory.push({
+        role: 'model',
+        parts: [{ text: botReply }]
+      });
+      removeTyping();
+      addMessage(botReply, 'bot');
+    } else {
+      // Show what went wrong
+      console.error('Bad response:', data);
+      removeTyping();
+      addMessage('Sorry, I had a small issue. Please try again!', 'bot');
+    }
 
   } catch (error) {
     removeTyping();
@@ -386,4 +393,3 @@ async function sendMessage() {
     console.error(error);
   }
 }
-
