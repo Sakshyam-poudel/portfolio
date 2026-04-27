@@ -275,7 +275,7 @@ statNums.forEach(n => countObserver.observe(n));
 // ✏️ PASTE YOUR GEMINI API KEY HERE
 const GEMINI_API_KEY = 'AIzaSyALsFGUHwI2Vcn7A7knr2cJIdlboUW_Jqs';
 
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 // ✏️ CUSTOMIZE THIS with your real info
 const SYSTEM_PROMPT = `You are a helpful assistant on Sakshyam Poudel's portfolio website.
