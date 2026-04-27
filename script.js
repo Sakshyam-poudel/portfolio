@@ -262,6 +262,126 @@ const countObserver = new IntersectionObserver((entries) => {
 
 statNums.forEach(n => countObserver.observe(n));
 
+// AI chatbot
+// ═══════════════════════════════════════════
+//  AI CHATBOT — Powered by Gemini (Free)
+// ═══════════════════════════════════════════
+
+// ✏️ PASTE YOUR GEMINI API KEY HERE
+const GEMINI_API_KEY = 'AIzaSyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+
+const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+
+// ✏️ CUSTOMIZE THIS with your real info
+const SYSTEM_PROMPT = `You are a helpful assistant on Sakshyam Poudel's portfolio website.
+Answer questions about Sakshyam in a friendly, professional tone.
+Keep answers short — 2 to 3 sentences max.
+Only answer questions related to Sakshyam or his work.
+If asked something unrelated, politely redirect to his portfolio topics.
+
+Here is everything you know about Sakshyam:
+- Full name: Sakshyam Poudel
+- Studying: Bachelor's in Computer Science & AI (CSAI)
+- Location: Nepal
+- Skills: Python, Machine Learning, Data Science, JavaScript, HTML, CSS
+- Interests: AI, Neural Networks, NLP, Data Pipelines
+- Projects: [ADD YOUR REAL PROJECTS HERE]
+- Contact: [ADD YOUR EMAIL HERE]
+- GitHub: https://github.com/Sakshyam-poudel
+- Currently learning: Deep Learning, PyTorch, Data Science
+- Goal: To build intelligent systems that solve real-world problems
+- Available for: Internships, collaborations, academic projects`;
+
+// Store conversation history
+let chatHistory = [];
+
+function toggleChat() {
+  const widget = document.getElementById('chat-widget');
+  const icon   = document.getElementById('chat-bubble-icon');
+  widget.classList.toggle('chat-hidden');
+  icon.textContent = widget.classList.contains('chat-hidden') ? '💬' : '✕';
+}
+
+function addMessage(text, type) {
+  const messages = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.classList.add('msg', type === 'user' ? 'user-msg' : 'bot-msg');
+  div.textContent = text;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const messages = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.classList.add('msg', 'typing-msg');
+  div.id = 'typing-indicator';
+  div.textContent = '...';
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function removeTyping() {
+  const typing = document.getElementById('typing-indicator');
+  if (typing) typing.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const userText = input.value.trim();
+  if (!userText) return;
+
+  // Show user message
+  addMessage(userText, 'user');
+  input.value = '';
+
+  // Add to history
+  chatHistory.push({
+    role: 'user',
+    parts: [{ text: userText }]
+  });
+
+  // Show typing
+  showTyping();
+
+  try {
+    const response = await fetch(GEMINI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: {
+          parts: [{ text: SYSTEM_PROMPT }]
+        },
+        contents: chatHistory,
+        generationConfig: {
+          maxOutputTokens: 300,
+          temperature: 0.7
+        }
+      })
+    });
+
+    const data = await response.json();
+
+    // Extract reply from Gemini response
+    const botReply = data.candidates[0].content.parts[0].text;
+
+    // Add to history
+    chatHistory.push({
+      role: 'model',
+      parts: [{ text: botReply }]
+    });
+
+    removeTyping();
+    addMessage(botReply, 'bot');
+
+  } catch (error) {
+    removeTyping();
+    addMessage('Sorry, I had a small issue. Please try again!', 'bot');
+    console.error(error);
+  }
+}
+
 
 // ═══════════════════════════════════════════
 //  Close the DOMContentLoaded wrapper
