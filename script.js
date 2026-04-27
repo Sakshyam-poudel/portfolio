@@ -262,13 +262,18 @@ const countObserver = new IntersectionObserver((entries) => {
 
 statNums.forEach(n => countObserver.observe(n));
 
+
+// ═══════════════════════════════════════════
+//  Close the DOMContentLoaded wrapper
+// ═══════════════════════════════════════════
+});
 // AI chatbot
 // ═══════════════════════════════════════════
 //  AI CHATBOT — Powered by Gemini (Free)
 // ═══════════════════════════════════════════
 
 // ✏️ PASTE YOUR GEMINI API KEY HERE
-const GEMINI_API_KEY = 'AIzaSyxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+const GEMINI_API_KEY = 'AIzaSyALsFGUHwI2Vcn7A7knr2cJIdlboUW_Jqs';
 
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
 
@@ -382,8 +387,3 @@ async function sendMessage() {
   }
 }
 
-
-// ═══════════════════════════════════════════
-//  Close the DOMContentLoaded wrapper
-// ═══════════════════════════════════════════
-});
